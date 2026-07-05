@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Health Oversight Group — Independent Review &amp; Functional Oversight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-navy:#073B3A;
+    --blue-green:#157A6E;
+    --silver:#BFC8C8;
+    --ivory:#FAF8F1;
+    --white:#FFFFFF;
+    --charcoal:#1F2933;
+    --slate:#64748B;
+    --stable-green:#2E7D5B;
+    --warn-red:#B42318;
+    --serif:'Lora', Georgia, serif;
+    --sans:'Inter', -apple-system, sans-serif;
+  }
+  :root{
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-5:48px;
+    --sp-6:64px; --sp-7:96px; --sp-8:128px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans);color:var(--charcoal);background:var(--ivory);line-height:1.75;}
+  h1,h2,h3{font-family:var(--serif);color:var(--teal-navy);line-height:1.35;}
+  a{color:var(--blue-green);text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-green);display:block;margin-bottom:var(--sp-2);}
+  .eyebrow.on-navy{color:#8FD6C8;}
+  @media (max-width:700px){.wrap{padding:0 24px;}}
+
+  /* pill-style buttons, distinct from squared buttons on the other site */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 30px;border-radius:999px;font-weight:600;font-size:.92rem;
+    border:1.5px solid transparent;cursor:pointer;transition:all .18s ease;
+    text-decoration:none !important;line-height:1;white-space:nowrap;
+  }
+  .btn:visited{color:inherit;}
+  .btn-primary{background:var(--white);color:var(--teal-navy) !important;}
+  .btn-primary:hover{background:var(--ivory);}
+  .btn-outline-light{background:transparent;color:var(--white) !important;border-color:rgba(255,255,255,.5);}
+  .btn-outline-light:hover{border-color:var(--white);}
+  .btn-solid{background:var(--blue-green);color:var(--white) !important;}
+  .btn-solid:hover{background:#0f6259;}
+  .btn-outline-dark{background:transparent;color:var(--teal-navy) !important;border-color:var(--teal-navy);}
+  .btn-outline-dark:hover{background:var(--teal-navy);color:var(--white) !important;}
+
+  /* ---------- header : underline nav, no pill nav buttons ---------- */
+  header{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid #E6E1D3;box-shadow:0 1px 0 rgba(7,59,58,.03);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;max-width:1180px;margin:0 auto;gap:24px;}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--teal-navy);font-family:var(--serif);font-weight:700;font-size:1.05rem;white-space:nowrap;}
+  .navlinks{display:flex;gap:8px;align-items:center;}
+  .navlinks a.navlink{color:var(--charcoal);font-size:.86rem;font-weight:500;padding:10px 14px;border-radius:6px;}
+  .navlinks a.navlink:hover{background:var(--ivory);color:var(--teal-navy);}
+  .navlinks .btn{margin-left:16px;}
+  .nav-toggle{display:none;background:none;border:none;color:var(--teal-navy);font-size:1.4rem;cursor:pointer;}
+  @media (max-width:960px){
+    .nav{padding:16px 24px;}
+    .navlinks{position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;align-items:stretch;padding:12px 24px 24px;gap:4px;display:none;border-bottom:1px solid #E6E1D3;}
+    .navlinks.open{display:flex;}
+    .navlinks a.navlink{padding:12px 14px;}
+    .navlinks .btn{margin-top:10px;margin-left:0;width:100%;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- hero : centered, watermark line pattern behind, badge strip below ---------- */
+  .hero{
+    background:var(--teal-navy);
+    color:var(--white);
+    padding:var(--sp-7) 0 var(--sp-6);
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(191,200,200,.05) 0px, rgba(191,200,200,.05) 1px, transparent 1px, transparent 64px);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;z-index:2;max-width:760px;margin:0 auto;}
+  .hero .eyebrow.on-navy{margin-bottom:var(--sp-3);}
+  .hero h1{color:var(--white);font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;margin:0 0 var(--sp-3);letter-spacing:-.005em;}
+  .hero p.sub{color:#D4E3E0;font-size:1.02rem;margin:0 auto var(--sp-5);max-width:54ch;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:var(--sp-4);}
+  .hero-tagline{color:#8FD6C8;font-size:.88rem;font-style:italic;font-family:var(--serif);}
+  .ekg{position:relative;z-index:2;max-width:820px;margin:var(--sp-7) auto 0;opacity:.9;}
+  .badge-strip{position:relative;z-index:2;display:grid;grid-template-columns:repeat(5,1fr);gap:var(--sp-2);margin:var(--sp-6) auto 0;padding-top:var(--sp-5);border-top:1px solid rgba(191,200,200,.25);max-width:960px;}
+  .badge-strip div{font-size:.78rem;color:#B9D6D0;letter-spacing:.02em;padding:0 var(--sp-2);}
+  @media (max-width:700px){.badge-strip{grid-template-columns:repeat(2,1fr);gap:var(--sp-3) var(--sp-2);}}
+
+  section{padding:var(--sp-7) 0;}
+  section[id]{scroll-margin-top:84px;}
+  .section-head{max-width:680px;margin:0 0 var(--sp-6);}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(1.5rem,2.3vw,1.95rem);}
+  .section-head p{margin-top:var(--sp-3);}
+  .band-white{background:var(--white);}
+  .band-navy{background:var(--teal-navy);color:var(--white);}
+  .band-navy h2{color:var(--white);}
+  .band-navy .muted{color:#C9D7D4;}
+  .muted{color:var(--slate);}
+  @media (max-width:700px){section{padding:var(--sp-6) 0;}}
+
+  /* ---------- what we provide: alternating icon rows instead of card grid ---------- */
+  .provide-rows{display:flex;flex-direction:column;}
+  .provide-row{display:grid;grid-template-columns:56px 1fr;gap:var(--sp-4);padding:var(--sp-4) 0;border-bottom:1px solid #ECE7D9;align-items:center;}
+  .provide-row:first-child{padding-top:0;}
+  .provide-row:last-child{border-bottom:none;padding-bottom:0;}
+  .provide-icon{width:52px;height:52px;border-radius:50%;background:#EAF3F1;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .provide-row h3{font-family:var(--sans);font-size:1.02rem;font-weight:700;color:var(--teal-navy);margin-bottom:var(--sp-1);}
+  .provide-row p{font-size:.92rem;color:var(--charcoal);max-width:64ch;}
+
+  /* ---------- how it works: horizontal stepper ---------- */
+  .stepper{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp-3);margin-top:var(--sp-6);position:relative;}
+  .stepper::before{content:"";position:absolute;top:19px;left:8%;right:8%;height:2px;background:repeating-linear-gradient(90deg, var(--silver) 0 8px, transparent 8px 14px);}
+  .step{position:relative;z-index:2;flex:1;text-align:center;padding:0 var(--sp-1);}
+  .step-dot{width:40px;height:40px;border-radius:50%;background:var(--white);border:2px solid var(--blue-green);color:var(--blue-green);font-family:var(--serif);font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-3);font-size:.95rem;}
+  .step.final .step-dot{border-color:var(--stable-green);color:var(--stable-green);background:#EAF6EF;}
+  .step p{font-size:.84rem;color:var(--charcoal);max-width:20ch;margin:0 auto;}
+  @media (max-width:820px){
+    .stepper{flex-direction:column;gap:var(--sp-4);align-items:flex-start;text-align:left;}
+    .stepper::before{display:none;}
+    .step{display:flex;align-items:center;gap:var(--sp-3);text-align:left;padding:0;}
+    .step-dot{margin:0;flex-shrink:0;}
+    .step p{max-width:none;margin:0;}
+  }
+
+  .split{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--sp-6);align-items:start;}
+  @media (max-width:900px){.split{grid-template-columns:1fr;gap:var(--sp-5);}}
+  .split > div > .eyebrow{margin-bottom:var(--sp-2);}
+  .split > div > h2{margin-bottom:0;}
+  .split > div > p{margin-top:var(--sp-3);}
+
+  /* tags rendered as a bordered checklist instead of pill tags */
+  .list-label{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-green);margin-bottom:var(--sp-3);display:block;}
+  .band-navy .list-label{color:#8FD6C8;}
+  .check-list{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--sp-5);row-gap:0;}
+  .check-list div{padding:var(--sp-2) 0 var(--sp-2) 24px;position:relative;font-size:.9rem;border-bottom:1px dashed #E3DECF;}
+  .check-list div::before{content:"—";position:absolute;left:0;color:var(--blue-green);font-weight:700;}
+  .band-navy .check-list div{border-bottom-color:rgba(191,200,200,.25);}
+  .band-navy .check-list div::before{color:#8FD6C8;}
+  @media (max-width:600px){.check-list{grid-template-columns:1fr;}}
+
+  .deliver-block{margin-top:var(--sp-5);}
+  .deliver-strip{display:flex;flex-wrap:wrap;gap:var(--sp-2);}
+  .deliver-strip span{font-size:.8rem;background:#F3F1E9;border:1px solid #E3DECF;padding:8px 16px;border-radius:3px;color:var(--charcoal);}
+
+  .callout{background:var(--ivory);border:1px solid #E3DECF;border-top:3px solid var(--stable-green);padding:var(--sp-4);border-radius:2px;font-size:.95rem;}
+  .callout p{margin-bottom:var(--sp-3);}
+  .callout strong{color:var(--stable-green);}
+  .note-box{background:transparent;border:1px dashed var(--silver);padding:var(--sp-3) var(--sp-4);border-radius:2px;font-size:.88rem;color:var(--slate);margin-top:var(--sp-3);}
+
+  .cta-final{background:var(--teal-navy);color:var(--white);text-align:center;padding:var(--sp-7) 0;}
+  .cta-final h2{color:var(--white);font-size:clamp(1.5rem,2.6vw,2.1rem);}
+  .cta-final p{max-width:56ch;margin:var(--sp-3) auto var(--sp-5);color:#C9D7D4;}
+  .warn-strip{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--warn-red);color:#FF9C8F;padding:11px 20px;border-radius:3px;font-size:.85rem;font-weight:600;margin-top:var(--sp-4);}
+
+  footer{background:var(--white);color:var(--slate);padding:var(--sp-6) 0 var(--sp-4);font-size:.85rem;border-top:1px solid #E6E1D3;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:var(--sp-5);padding-bottom:var(--sp-5);border-bottom:1px solid #E6E1D3;}
+  .footer-grid h4{color:var(--teal-navy);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:var(--sp-3);}
+  .footer-grid a{color:var(--slate);display:block;margin-bottom:var(--sp-2);}
+  .footer-grid a:hover{color:var(--teal-navy);}
+  .footer-brand{font-family:var(--serif);color:var(--teal-navy);font-size:1.02rem;margin-bottom:var(--sp-2);}
+  .footer-disclaimer{padding-top:var(--sp-4);color:#94A0A6;line-height:1.7;font-size:.8rem;}
+  @media (max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <path d="M2 13 L8 13 L10.5 6 L14 20 L16.5 13 L24 13" stroke="#157A6E" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      Meridian Health Oversight Group
+    </div>
+    <button class="nav-toggle" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
+    <nav class="navlinks" id="navlinks">
+      <a class="navlink" href="#independent-review">Independent Review</a>
+      <a class="navlink" href="#functional-oversight">Functional Oversight</a>
+      <a class="navlink" href="#provider-stabilization">Provider Stabilization</a>
+      <a class="navlink" href="#about">About Us</a>
+      <a href="tel:+16125097429" class="btn btn-solid">Call to Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow on-navy">Independent Healthcare Review &amp; Oversight</div>
+    <h1>Independent Review and Functional Oversight for Healthcare Providers</h1>
+    <p class="sub">Meridian Health Oversight Group helps healthcare provider companies produce independent review findings, stabilize operations, strengthen financial control, improve documentation, build staff accountability, support sustainable revenue, and prevent future risk.</p>
+    <div class="hero-actions">
+      <a href="tel:+16125097429" class="btn btn-primary">Call (612) 509-7429</a>
+      <a href="#how-it-works" class="btn btn-outline-light">Learn How It Works</a>
+    </div>
+    <div class="hero-tagline">"Clear findings. Stronger systems. Better provider stability."</div>
+  </div>
+  <div class="ekg wrap">
+    <svg viewBox="0 0 900 90" width="100%" height="90" preserveAspectRatio="none">
+      <polyline points="0,45 140,45 165,15 190,75 215,45 340,45 365,25 385,65 405,45 900,45"
+        fill="none" stroke="#2E7D5B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="badge-strip wrap">
+    <div>Financial Control</div>
+    <div>Operational Oversight</div>
+    <div>Staff Accountability</div>
+    <div>Documentation Systems</div>
+    <div>Provider Stabilization</div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="band-white">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Positioning</div>
+      <h2>Healthcare-Centered Oversight and Review</h2>
+      <p class="muted">Meridian Health Oversight Group may be selected as an independent review and functional oversight option because of its healthcare provider experience, business operating knowledge, financial control capacity, documentation oversight experience, staff accountability systems, and ability to stabilize provider companies while ownership remains in place.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section id="what-we-do">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What We Provide</div>
+      <h2>Independent Findings and Functional Oversight</h2>
+    </div>
+    <div class="provide-rows">
+      <div class="provide-row">
+        <div class="provide-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4h14v14H4z" stroke="#157A6E" stroke-width="1.5"/><path d="M7 9h8M7 13h5" stroke="#157A6E" stroke-width="1.5"/></svg>
+        </div>
+        <div>
+          <h3>Independent Review Findings</h3>
+          <p>Meridian may review provider operations, documentation, financial controls, staffing systems, revenue processes, and corrective action efforts.</p>
+        </div>
+      </div>
+      <div class="provide-row">
+        <div class="provide-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 18V9M11 18V4M18 18v-6" stroke="#157A6E" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h3>Financial Control</h3>
+          <p>Budgets, expenses, billing, collections, cash flow, and financial reporting.</p>
+        </div>
+      </div>
+      <div class="provide-row">
+        <div class="provide-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="7" stroke="#157A6E" stroke-width="1.5"/><path d="M11 7v4l3 2" stroke="#157A6E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h3>Operational Oversight</h3>
+          <p>Workflows, scheduling, documentation systems, reporting, management structure, and internal processes.</p>
+        </div>
+      </div>
+      <div class="provide-row">
+        <div class="provide-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="3" stroke="#157A6E" stroke-width="1.5"/><path d="M5 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#157A6E" stroke-width="1.5"/></svg>
+        </div>
+        <div>
+          <h3>Staff Accountability</h3>
+          <p>Staff responsibilities, task tracking, documentation expectations, performance follow-up, and supervision systems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="band-white" id="how-it-works">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Process</div>
+      <h2>How Meridian Works</h2>
+      <p class="muted">Meridian may become involved when a healthcare provider company needs independent review findings, functional oversight, or stabilization support. Meridian reviews key business areas, documents findings, identifies weaknesses, and may provide functional oversight when stronger control is needed.</p>
+    </div>
+    <div class="stepper">
+      <div class="step"><div class="step-dot">1</div><p>Provider needs independent review or stabilization</p></div>
+      <div class="step"><div class="step-dot">2</div><p>Meridian reviews key business functions</p></div>
+      <div class="step"><div class="step-dot">3</div><p>Findings and corrective action plan developed</p></div>
+      <div class="step"><div class="step-dot">4</div><p>Functional oversight may begin</p></div>
+      <div class="step final"><div class="step-dot">5</div><p>Stabilization, monitoring, and documentation</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDEPENDENT REVIEW -->
+<section id="independent-review">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Independent Review</div>
+      <h2>Independent Review Findings</h2>
+      <p>Meridian provides independent review findings for healthcare provider companies that need a serious, documented assessment of key business functions. Meridian's findings help show whether the provider has strengthened systems, addressed known issues, and created a credible path toward stability.</p>
+    </div>
+    <div>
+      <p class="list-label">Review may include</p>
+      <div class="check-list">
+        <div>Financial controls</div>
+        <div>Billing systems</div>
+        <div>Revenue processes</div>
+        <div>Documentation systems</div>
+        <div>Staff accountability</div>
+        <div>Operational workflows</div>
+        <div>Management structure</div>
+        <div>Corrective action verification</div>
+        <div>Owner involvement</div>
+        <div>Compliance-related systems</div>
+        <div>Future-risk controls</div>
+      </div>
+      <div class="deliver-block">
+      <p class="list-label">Deliverables may include</p>
+      <div class="deliver-strip">
+        <span>Independent review findings</span>
+        <span>Corrective action observations</span>
+        <span>Functional oversight recommendations</span>
+        <span>Provider stabilization plan</span>
+        <span>Financial control recommendations</span>
+        <span>Staff accountability recommendations</span>
+        <span>Documentation improvement recommendations</span>
+        <span>Monitoring recommendations</span>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCTIONAL OVERSIGHT -->
+<section class="band-navy" id="functional-oversight">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow on-navy">Functional Oversight</div>
+      <h2>Functional Oversight When Stronger Control Is Needed</h2>
+      <p class="muted">When a provider needs more than a written plan, Meridian may assume functional oversight of key business areas while ownership remains in place.</p>
+    </div>
+    <p class="list-label">Oversight may include</p>
+    <div class="check-list">
+      <div>Financial management</div>
+      <div>Budget control</div>
+      <div>Revenue systems</div>
+      <div>Billing review</div>
+      <div>Collections review</div>
+      <div>Staff accountability</div>
+      <div>Documentation systems</div>
+      <div>Operational processes</div>
+      <div>Internal reporting</div>
+      <div>Management structure</div>
+      <div>Compliance-related systems</div>
+      <div>Future-risk prevention</div>
+    </div>
+  </div>
+</section>
+
+<!-- OWNERSHIP REMAINS -->
+<section class="band-white">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">A Note on Structure</div>
+      <h2>Ownership Remains. Systems Become Stronger.</h2>
+      <p class="muted">Meridian works within the provider's existing ownership structure while helping control and strengthen key functions that require more structure, discipline, documentation, and oversight.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROVIDER STABILIZATION -->
+<section id="provider-stabilization">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Provider Stabilization</div>
+      <h2>Provider Stabilization</h2>
+      <p>Provider stabilization means strengthening a healthcare company before problems worsen, services collapse, clients are harmed, staff lose confidence, or financial and operational issues become unmanageable.</p>
+    </div>
+    <div>
+      <p class="list-label">Stabilization goals include</p>
+      <div class="check-list">
+        <div>Protect care continuity</div>
+        <div>Strengthen provider operations</div>
+        <div>Improve revenue and cash flow</div>
+        <div>Correct documentation problems</div>
+        <div>Improve staff accountability</div>
+        <div>Reduce repeated failures</div>
+        <div>Build stronger internal systems</div>
+        <div>Prevent future mistakes</div>
+        <div>Support owner accountability</div>
+        <div>Preserve services when possible</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / CONTACT -->
+<section class="band-white" id="about">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">About</div>
+      <h2>About Meridian Health Oversight Group</h2>
+      <p>Meridian Health Oversight Group is an independent healthcare review, functional oversight, and provider stabilization company. Meridian supports healthcare providers through financial control, operational oversight, staff accountability, documentation systems, revenue improvement, and future-risk prevention.</p>
+      <p>Meridian's approach is steady and clinical: review key business functions, document findings clearly, and — when stronger control is needed — provide functional oversight while ownership remains in place.</p>
+    </div>
+    <div>
+      <p class="list-label">Contact</p>
+      <div class="callout">
+        <p style="margin-bottom:12px;">Meridian does not take on engagements by email. To discuss a review, oversight need, or stabilization request, call:</p>
+        <a href="tel:+16125097429" class="btn btn-outline-dark">Call (612) 509-7429</a>
+      </div>
+      <div class="note-box">This line is for provider oversight inquiries. If someone is in immediate danger, call 911.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <div class="wrap">
+    <div class="eyebrow on-navy">Get Started</div>
+    <h2>Need Independent Review or Functional Oversight?</h2>
+    <p>If your provider company needs serious review, documented findings, financial control, operational structure, staff accountability, revenue improvement, documentation support, or functional oversight, Meridian Health Oversight Group can review the situation.</p>
+    <a href="tel:+16125097429" class="btn btn-primary">Contact Meridian — (612) 509-7429</a>
+    <div><span class="warn-strip">⚠ This line is not for emergencies. If someone is in immediate danger, call 911.</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Meridian Health Oversight Group</div>
+        <p style="max-width:40ch;">Independent healthcare review, functional oversight, and provider stabilization.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <a href="#independent-review">Independent Review</a>
+        <a href="#functional-oversight">Functional Oversight</a>
+        <a href="#what-we-do">What We Do</a>
+        <a href="#provider-stabilization">Provider Stabilization</a>
+        <a href="#about">About</a>
+      </div>
+      <div>
+        <h4>Contact &amp; Legal</h4>
+        <a href="tel:+16125097429">Call (612) 509-7429</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms / Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      Meridian Health Oversight Group provides independent healthcare review, functional oversight, and provider stabilization services based on the scope of engagement, information available, and records reviewed. Meridian does not guarantee any specific regulatory, legal, enforcement, referral, or business outcome.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
